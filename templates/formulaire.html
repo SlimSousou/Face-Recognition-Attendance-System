@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>
+    Material Dashboard 2 by Creative Tim
+  </title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="../static/css/material-dashboard.css?v=3.1.0" rel="stylesheet" />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<style>
+
+body {
+  background-image: url('../static/img/professor.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+}
+.modal-dialog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.modal-content {
+  width: 400px;
+  border: 2px solid black; 
+  background-color: white; 
+  padding: 20px; 
+}
+
+.image-container {
+    display: inline-block;
+    margin-right: 10px;
+}
+.delete-icon {
+display: block;
+text-align: center;
+cursor: pointer;
+font-size: 20px;
+color: red;
+}
+
+@media (max-width: 576px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+
+</style>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="/" id="form" method="post" enctype="multipart/form-data">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addEmployeeModalLabel">Add Professor</h5>
+                        
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="firstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="mb-3">
+                          <label for="lastName" class="form-label">Last Name</label>
+                          <input type="text" class="form-control" id="lastName" name="lastName" required>
+                      </div>
+                        <div class="mb-3">
+                            <label for="imageInput" class="form-label">Image</label>
+                            <div class="input-group">
+                                <input type="file" id="imageInput" name="images[]" class="form-control" accept="image/*" multiple style="display: none;">
+                                <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('imageInput').click();">Select Images</button>
+                            </div>
+                            <div id="selectedImages"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                       
+                        <input type="submit" class="btn btn-dark-blue" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+            
+            
+    <script>
+            document.getElementById('imageInput').addEventListener('change', function(event) {
+            const files = event.target.files;
+            const selectedImagesDiv = document.getElementById('selectedImages');
+        
+            for (let i = 0; i < files.length; i++) {
+                const imgContainer = document.createElement('div');
+                imgContainer.classList.add('image-container');
+        
+                const img = document.createElement('img');
+                img.src = URL.createObjectURL(files[i]);
+                img.style.maxWidth = '100px';
+                img.style.maxHeight = '100px';
+        
+                const deleteIcon = document.createElement('span');
+                deleteIcon.classList.add('delete-icon');
+                deleteIcon.innerHTML = '&#x2715;';
+                deleteIcon.onclick = function() {
+                    imgContainer.remove();
+                };
+        
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(deleteIcon);
+                selectedImagesDiv.appendChild(imgContainer);
+            }
+          });
+
+          document.getElementById('form').addEventListener('submit', function(event) {
+            alert('Form submitted successfully!');
+          });
+
+    </script>
+
+     <!--   Core JS Files   -->
+  <script src="../static/js/core/popper.min.js"></script>
+  <script src="../static/js/core/bootstrap.min.js"></script>
+  <script src="../static/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../static/js/plugins/smooth-scrollbar.min.js"></script>
+
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../static/js/material-dashboard.min.js?v=3.1.0"></script>
+
+</body>
+</html>
